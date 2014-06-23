@@ -47,14 +47,14 @@ class GravityFormsPlaceholder
         //show it just after the admin label
         if ($position == 50) {
             ?>
-        <li class="placeholder_setting field_setting">
-            <label for="field_placeholder_value">
-                <?php _e("Placeholder", "gravityforms"); ?>
-                <?php gform_tooltip($this->_fieldName) ?>
-            </label>
-            <input type="text" id="field_placeholder_value" size="35"
-                   onkeyup="SetFieldProperty('<?php echo $this->_fieldName; ?>', this.value);"/>
-        </li>
+            <li class="admin_label_setting placeholder_setting field_setting" style="display: list-item;">
+                <label for="field_placeholder_value">
+                    <?php _e("Placeholder", "gravityforms"); ?>
+                    <?php gform_tooltip($this->_fieldName) ?>
+                </label>
+                <input type="text" id="field_placeholder_value" size="35"
+                       onkeyup="SetFieldProperty('<?php echo $this->_fieldName; ?>', this.value);"/>
+            </li>
         <?php
         }
 
@@ -66,16 +66,16 @@ class GravityFormsPlaceholder
     public function admin_editor_js()
     {
         ?>
-    <script type='text/javascript'>
-        //adding setting to fields of type "text"
-        fieldSettings["text"] += ", .placeholder_setting";
+        <script type='text/javascript'>
+            //adding setting to fields of type "text"
+            // fieldSettings["text"] += ", .placeholder_setting";
 
-        //binding to the load field settings event to initialize the checkbox
-        jQuery(document).bind("gform_load_field_settings", function (event, field, form) {
+            //binding to the load field settings event to initialize the checkbox
+            jQuery(document).bind("gform_load_field_settings", function (event, field, form) {
 
-            jQuery("#field_placeholder_value").val(field['<?php echo $this->_fieldName; ?>']);
-        });
-    </script>
+                jQuery("#field_placeholder_value").val(field['<?php echo $this->_fieldName; ?>']);
+            });
+        </script>
     <?php
     }
 
